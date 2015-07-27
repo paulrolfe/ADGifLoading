@@ -4,6 +4,7 @@
 //
 //  Created by aidenluo on 14/12/30.
 //  Copyright (c) 2014年 aidenluo. All rights reserved.
+//  Edited by Paul Rolfe 2015.
 //
 
 #import "UIView+ADGifLoading.h"
@@ -22,6 +23,11 @@ static char LoadingView;
 
 - (void)ad_showLoading
 {
+    UIView *loadingView = objc_getAssociatedObject(self, &LoadingView);
+    if (loadingView) {
+        return;
+    }
+    
     NSString *name = objc_getAssociatedObject(self, &LoadingGifName);
     UIView *container = [[UIView alloc] initWithFrame:self.bounds];
     container.backgroundColor = [UIColor clearColor];
@@ -47,8 +53,8 @@ static char LoadingView;
 - (void)ad_hideLoading
 {
     UIView *loadingView = objc_getAssociatedObject(self, &LoadingView);
-    objc_removeAssociatedObjects(loadingView);
     [loadingView removeFromSuperview];
+    objc_setAssociatedObject(self, &LoadingView, nil, OBJC_ASSOCIATION_ASSIGN);
 }
 
 @end
