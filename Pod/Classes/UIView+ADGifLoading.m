@@ -24,7 +24,7 @@ static char LoadingView;
 {
     NSString *name = objc_getAssociatedObject(self, &LoadingGifName);
     UIView *container = [[UIView alloc] initWithFrame:self.bounds];
-    container.backgroundColor = [UIColor whiteColor];
+    container.backgroundColor = [UIColor clearColor];
     container.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:container];
     
